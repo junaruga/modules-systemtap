@@ -1,0 +1,80 @@
+document: modulemd
+version: 1
+data:
+  # From systemtap.spec Summary
+  summary: Programmable system-wide instrumentation system
+  # From systemtap.spec description
+  description: >-
+    SystemTap is an instrumentation system for systems running Linux.
+    Developers can write instrumentation scripts to collect data on
+    the operation of the system.  The base systemtap package contains/requires
+    the components needed to locally develop and execute systemtap scripts.
+  # From *.spec License
+  license:
+    module:
+      - GPLv2+
+      - Public Domain
+  references:
+    community: http://sourceware.org/systemtap/
+    documentation: https://sourceware.org/systemtap/wiki
+    tracker: https://sourceware.org/systemtap/getinvolved.html Contribute
+  dependencies:
+    buildrequires:
+      base-runtime: f26
+      shared-userspace: f26
+      common-build-dependencies: f26
+      # perl: f26
+    requires:
+      base-runtime: f26
+      # perl: f26
+  components:
+    # SRPMs
+    rpms:
+      # systemtap BuildRequires
+      crash:
+        rationale: 'systemtap.spec BuildRequires: crash-devel'
+        buildorder: 90
+      java-1.8.0-openjdk:
+        rationale: 'systemtap.spec BuildRequires: java-devel'
+        buildorder: 90
+      javapackages-tools:
+        rationale: 'systemtap.spec BuildRequires: jpackage-utils'
+        buildorder: 90
+      latex2html:
+        rationale: 'systemtap.spec BuildRequires: latex2html'
+        buildorder: 90
+      libvirt:
+        rationale: 'systemtap.spec BuildRequires: pkgconfig(libvirt)'
+        buildorder: 90
+      texlive:
+        rationale: >-
+          systemtap.spec BuildRequires:
+          /usr/bin/dvips
+          /usr/bin/latex
+          tex(bchr7t.tfm)
+          tex(fancybox.sty)
+          tex(fullpage.sty)
+          tex(graphicx.sty)
+        buildorder: 90
+      systemtap:
+        # From systemtap.spec Summary
+        rationale: Programmable system-wide instrumentation system
+        buildorder: 100
+  api:
+    # RPMs
+    # From *.spec %package
+    rpms:
+      # From systemap.spec
+      - systemtap
+      - systemtap-client
+      - systemtap-devel
+      - systemtap-initscript
+      - systemtap-runtime
+      - systemtap-runtime-java
+      - systemtap-runtime-python2
+      - systemtap-runtime-python3
+      - systemtap-runtime-virtguest
+      - systemtap-runtime-virthost
+      - systemtap-sdt-devel
+      - systemtap-server
+      - systemtap-testsuite
